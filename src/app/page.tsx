@@ -1,16 +1,13 @@
 "use client";
 // src/app/page.tsx
 import React, { useState } from 'react';
-import Image from 'next/image';
 import LandingLayout from '../components/LandingLayout';
-import Link from 'next/link';
 import Footer from '../components/Footer';
 import AboutSection from '../components/About';
 import HeroSection from '@components/HeroSection';
-import Utility from '@components/Utility';
 import Tokenomics from '@components/Tokenomics';
 import Roadmap from '@components/Roadmap';
-import Resources from '@components/Resources';
+import HistorySection from '@components/History';
 
 const posts = [
   {
@@ -45,12 +42,11 @@ const HomePage: React.FC = () => {
   return (
     <LandingLayout>
       {/* Hero Section */}
+
       <HeroSection/>
 
-      {/* About Section */}
-      <AboutSection images={images} />
        {/* Whitepaper Section */}
-     <Utility/> 
+       <HistorySection/> 
   
 {/* Tokenomics Section */}
 <Tokenomics/>
@@ -59,8 +55,6 @@ const HomePage: React.FC = () => {
      <Roadmap/>
 
       {/* Call-to-Action */}
-
-      <Resources/>
     
   <Footer/>
   

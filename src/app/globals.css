@@ -4,10 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+
 /* Font Imports */
 @font-face {
-  font-family: 'Barlow';
-  src: url('/fonts/Barlow-Regular.otf') format('opentype');
+  font-family: 'QuietlyFree';
+  src: url('/fonts/quiet.ttf') format('opentype');
   font-weight: normal;
 }
 
@@ -25,16 +26,22 @@ select, textarea{
 
 }
 
+@font-face {
+  font-family: 'Chelsea Market';
+  src: url('/fonts/ChelseaMarket-Regular.ttf');
+  font-weight: normal;
+}
+
 
 
 @font-face {
-  font-family: 'Newton Italic';
-  src: url('/fonts/Newton-Howard-Font-Italic.woff');
+  font-family: 'QuitelyFree Italic';
+  src: url('/fonts/QuitelyFree-Howard-Font-Italic.woff');
   font-weight: normal;
 }
 @font-face {
-  font-family: 'Barlow-Thin';
-  src: url('/fonts/Barlow-Thin.otf') format('opentype');
+  font-family: 'QuietlyFree-Thin';
+  src: url('/fonts/QuietlyFree-Thin.otf') format('opentype');
   font-weight: 300;
 }
 
@@ -61,8 +68,8 @@ select, textarea{
 }
 
 @font-face {
-  font-family: 'Barlow';
-  src: url('/fonts/BarlowCondensed-LightItalic.ttf');
+  font-family: 'QuietlyFree';
+  src: url('/fonts/QuietlyFreeCondensed-LightItalic.ttf');
   font-weight: 300;
 }
 
@@ -70,21 +77,20 @@ select, textarea{
 
 
 @font-face{
-  font-family: 'Newton';
-  src: url('/fonts/Newton.otf');
+  font-family: 'QuitelyFree';
+  src: url('/fonts/quiet.ttf');
   font-weight: normal;
 }
 h1, h2 {
-  font-family: 'Newton', sans-serif;
+  font-family: 'QuitelyFree', sans-serif;
   color: #ffffff;
   position: relative;
   display: inline-block;
   /* Base subtle glow */
-  text-shadow:
-    0 0 5px rgba(255,255,255,0.8),
-    0 0 10px rgba(255,255,255,0.6),
-    0 0 20px rgba(255,255,255,0.4),
-    0 0 40px rgba(255,255,255,0.2);
+  -webkit-text-stroke: 2px black;
+  /* Base subtle glow */
+    paint-order: stroke fill;
+    letter-spacing:2px;
 }
 
 /* The pseudo-element will rotate and apply a holographic effect */
@@ -137,34 +143,40 @@ h1::before, h2::before {
 
  
 span, a, h3, h4, h5, h6, button{
-  font-family: 'Barlow';
+  font-family: 'QuietlyFree';
+  paint-order: stroke fill;
 }
 
 h3 span{
-  font-family:'Dragen';
+  font-family:'QuietlyFree';
   font-size: 1rem;
+  paint-order: stroke fill;
+
 }
 
 .button{
-  font-family: 'Barlow';
+  font-family: 'QuietlyFree';
+  paint-order: stroke fill;
+
 }
 
 ol li{
   list-style-type:upper-roman;
+  paint-order: stroke fill;
+
 }
 
 span, button{
   font-size: 1rem;
-  font-family: 'Barlow';
+  font-family: 'QuietlyFree';
+  paint-order: stroke fill;
+
 }
-p, li{
-  font-size: .8rem;
-  font-family: 'titillium web';
-}
+
 
 table td{
   font-size: .81rem;
-  font-family: 'Barlow';
+  font-family: 'QuietlyFree';
 
 }
 
@@ -174,7 +186,7 @@ table tr{
 }
 
 table th{
-  font-family: 'Barlow';
+  font-family: 'QuietlyFree';
   font-size: .9rem;
   font-weight: 200!important;
   font-style:italic;
@@ -189,26 +201,36 @@ table td button{
 }
 
 h1{
-  font-size: 33px;
+  font-size: 38px;
+  font-family: 'QuietlyFree';
+}
+
+h2{
+  font-size:28px;
+  font-family: 'QuietlyFree';
 }
 
 h1 span{
   font-size: 33px;
+  font-family: 'QuietlyFree';
 }
 
 h6{
-  font-family: 'Barlow';
+  font-family: 'QuietlyFree';
 }
 h3{
   font-size: 1.1rem;
+  font-family: 'QuietlyFree';
 }
 
 h4 {
   font-size:15px;
+  font-family: 'QuietlyFree';
 }
 
 h5{
   font-size: 19px;
+  font-family: 'QuietlyFree';
 }
 
 h6{
@@ -227,10 +249,10 @@ border-radius: 10px;
 /* globals.css */
 
 /* General Styles */
-body {
-  background-color: #0a0a0a;
-  color: #ffffff;
-  font-family: 'Geist Sans', sans-serif;
+body, p, li, a, span, li a {
+  color: white;
+  font-size: 23px;
+  font-family: 'Chelsea Market', sans-serif;
 }
 
 /* Hero Section */
@@ -238,10 +260,6 @@ body {
   background: url('/images/MLbg1.jpg') no-repeat center center/cover;
   position: relative;
   background-attachment: fixed;
-}
-
-nav a{
-  font-family: 'Barlow';
 }
 
 .landing-heading {
@@ -1050,7 +1068,7 @@ Img{
 }
 
 .MonkeyShitInu{
- font-family:'Newton Italic'
+ font-family:'QuitelyFree'
 }
 
 .pentagon-container {

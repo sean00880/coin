@@ -15,7 +15,7 @@ const LandingLayout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
   return (
     <div className="flex flex-col min-h-screen">
       <TopBar />
-      <main className="w-full bg-background text-foreground">
+      <main className="w-full bg-gradient-to-br bg-fixed from-yellow-500 via-orange-500 to-orange-700 text-foreground">
         {children}
       </main>
     </div>

@@ -1,106 +1,147 @@
-"use client";
-import React from "react";
-import Image from "next/image";
+'use client';
+import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 const TokenomicsSection: React.FC = () => {
+  const [openCardIndex, setOpenCardIndex] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const carRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Intersection Observer for fade-in animations
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle('visible', entry.isIntersecting);
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      const elements = sectionRef.current.querySelectorAll('.fade-in-scroll');
+      elements.forEach((el) => observer.observe(el));
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    // Scroll listener for sliding car effect relative to section
+    const handleScroll = () => {
+      const sectionElement = sectionRef.current;
+      const carElement = carRef.current;
+
+      if (sectionElement && carElement) {
+        const sectionRect = sectionElement.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+
+        const progress = Math.max(
+          0,
+          Math.min(1, (windowHeight - sectionRect.top) / sectionRect.height)
+        );
+
+        const adjustedProgress = progress * 0.5; // Reduce movement speed
+        const sectionWidth = sectionElement.offsetWidth;
+        const maxTranslateX = sectionWidth - carElement.offsetWidth;
+
+        const translateX = adjustedProgress * maxTranslateX;
+
+        carElement.style.transform = `translateX(${translateX}px)`;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const toggleCard = (index: number) => {
+    setOpenCardIndex((prevIndex) => (prevIndex === index ? null : index));
+  };
+
+  const tokenomicsData = [
+    { title: 'TOKEN NAME', value: 'Bellscoin', details: 'The official name of our token, representing its identity.' },
+    { title: 'SYMBOL', value: '$BELLS', details: 'The ticker symbol used for trading Bellscoin.' },
+    { title: 'LIQUIDITY', value: 'Burned', details: 'Liquidity is burned to ensure scarcity and stability.' },
+    { title: 'TOTAL SUPPLY', value: '1 Billion', details: 'The maximum total supply of Bellscoin tokens.' },
+    {
+      title: 'NETWORK',
+      value: 'Ethereum (ETH)',
+      details: 'The Bellscoin ecosystem is built on the Ethereum blockchain, leveraging its robust infrastructure.',
+    },
+  ];
+
   return (
     <section
-      className="tokenomics-section py-16 px-4 md:px-8 bg-black text-white relative"
       id="tokenomics"
+      className="relative bg-fixed py-20 text-black"
+      style={{ backgroundImage: "url('/images/bgimg.jpg')", backgroundSize: 'cover' }}
+      ref={sectionRef}
     >
-      {/* Holographic Background Gradient */}
-      <div className="absolute inset-0 animate-pulse bg-gradient-to-t from-black via-purple-700 to-transparent opacity-70 blur-2xl"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-black opacity-70"></div>
+      <div className="relative z-10 container mx-auto px-4 flex flex-col items-center">
+        <h1 className="text-4xl md:text-6xl font-bold text-white mb-12 text-center fade-in-scroll opacity-0">
+          Tokenomics
+        </h1>
 
-      <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-        {/* Left Column: Tokenomics Content */}
-        <div className="space-y-6">
-          <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-purple-500 mb-6">
-            Tokenomics
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Total Supply */}
-            <div className="p-6 bg-black/60 border border-purple-600 rounded-xl shadow-lg backdrop-blur-lg hover:shadow-[0_0_15px_rgba(138,43,226,0.8)] transform hover:scale-105 transition duration-300">
-              <h3 className="text-2xl font-semibold text-purple-400 mb-2">
-                Total Supply
-              </h3>
-              <p className="text-3xl font-bold text-green-400">1 Billion</p>
-              <p className="mt-2 text-sm text-gray-300">
-                Strategically set to ensure a balanced ecosystem and sustainable
-                growth.
-              </p>
-              <Image
-                src="/images/ML.gif"
-                alt="Monkey Sol Inu Animation"
-                width={300}
-                height={200}
-                className="mt-4 rounded-lg hover:opacity-90 transition duration-500"
-              />
-            </div>
-
-            {/* Transaction Tax */}
-            <div className="p-6 bg-black rounded-xl shadow-lg backdrop-blur-lg hover:shadow-[0_0_15px_rgba(0,255,135,0.7)] transform hover:scale-105 transition duration-300">
-              <h3 className="text-2xl font-semibold text-purple-400 mb-2">
-                Transaction Tax
-              </h3>
-              <p className="text-lg">
-                <strong className="text-green-400">Buy:</strong> 0%
-                <br />
-                <strong className="text-green-400">Transfer:</strong> 0%
-                <br />
-                <strong className="text-green-400">Sell:</strong> 0%
-              </p>
-              <p className="mt-2 text-sm text-gray-300">
-                0% tax for a fair and transparent marketplace. 
-              </p>
-            </div>
-          </div>
-
-          {/* Detailed Overview */}
-          <div className="p-6 bg-black/60 border border-purple-600 rounded-xl shadow-lg backdrop-blur-lg hover:shadow-[0_0_15px_rgba(138,43,226,0.8)] transition-transform duration-300">
-            <h3 className="text-2xl font-semibold text-green-400 mb-4">
-              Detailed Tokenomics Overview
-            </h3>
-            <ul className="space-y-4 text-gray-300">
-              <li>
-                <strong className="text-purple-400">1. Total Supply:</strong> 1
-                Billion tokens designed for ecosystem sustainability and
-                long-term development.
-              </li>
-              <li>
-                <strong className="text-purple-400">2. Transaction Tax:</strong>{" "}
-                No tax on transactions.
-              </li>
-            </ul>
-          </div>
+        {/* Sliding Car */}
+        <div
+          className="car-image relative w-96 h-auto fade-in-scroll opacity-0 overflow-hidden"
+          ref={carRef}
+          style={{ transition: 'transform 0.2s ease-out' }}
+        >
+          <Image
+            src="/images/bellscoin2.png"
+            alt="Sliding Car"
+            width={400}
+            height={300}
+            className="rounded-lg shadow-lg"
+          />
         </div>
 
-        {/* Right Column: Parallax Image */}
-        <div className="relative flex justify-center items-center">
-          <div className="w-full md:w-auto rounded-xl overflow-hidden backdrop-blur-lg h-[80%] shadow-[0_0_25px_rgba(138,43,226,0.9)] transition-transform duration-500 hover:scale-105">
-            <Image
-              src="/images/inu.webp"
-              alt="Tokenomics Visual"
-              width={500}
-              height={400}
-              className="w-full h-auto animate-fade-in hover:opacity-90"
-            />
-          </div>
+        {/* Interactive Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-screen-lg mt-10">
+          {tokenomicsData.map((item, index) => (
+            <div
+              key={index}
+              className={`bg-white p-6 rounded-xl shadow-lg border-2 ${
+                openCardIndex === index ? 'border-purple-600 scale-105' : 'border-blue-400'
+              } hover:scale-105 hover:border-blue-600 transition-all duration-300`}
+            >
+              <h2 className="text-2xl md:text-3xl font-bold mb-3 text-gray-900">{item.title}</h2>
+              <p className="text-xl md:text-2xl text-gray-800">{item.value}</p>
+              <button
+                onClick={() => toggleCard(index)}
+                className="mt-5 bg-gradient-to-br from-blue-600 to-purple-600 hover:from-purple-600 hover:to-blue-600 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300"
+              >
+                {openCardIndex === index ? 'Close' : 'Details'}
+              </button>
+              <div
+                className={`transition-all duration-500 ease-in-out overflow-hidden ${
+                  openCardIndex === index ? 'max-h-40 p-4' : 'max-h-0 p-0'
+                }`}
+              >
+                <p className="text-gray-700">{item.details}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Animated Parallax Effect */}
       <style jsx>{`
-        @keyframes fadein {
-          from {
-            opacity: 0.7;
-          }
-          to {
-            opacity: 1;
-          }
+        .fade-in-scroll {
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.8s ease, transform 0.8s ease;
         }
-        .animate-fade-in {
-          animation: fadein 3s ease-in-out infinite alternate;
+
+        .fade-in-scroll.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .car-image {
+          transition: transform 0.5s ease-out;
         }
       `}</style>
     </section>

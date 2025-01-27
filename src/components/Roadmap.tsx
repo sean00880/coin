@@ -5,84 +5,93 @@ import Image from "next/image";
 const RoadmapSection: React.FC = () => {
   const roadmapPhases = [
     {
-      phase: "Phase 1: Website and Socials",
-      description:
-        "The foundation begins with the launch of our official website and social media platforms. Building a strong online presence ensures that the Monkey Sol Inu community stays informed, engaged, and connected from day one.",
+      phase: "Restore the forgotten honor",
+      description: "As the oldest meme coin in the world, Bellscoin aims to revive its legacy.",
+      image: "/images/phase3.png",
     },
     {
-      phase: "Phase 2: CoinMarketCap & CoinGecko Listings",
-      description:
-        "Achieving visibility on leading platforms like CoinMarketCap (CMC) and CoinGecko (CG) is critical. These listings will allow investors and community members to track real-time price data, market performance, and project growth metrics.",
+      phase: "Buy and HODL $BELLS",
+      description: "Support Bellscoin by buying and holding. Join the community of believers.",
+      image: "/images/phase1.gif",
     },
     {
-      phase: "Phase 3: KeyShiBros Release",
-      description:
-        "KeyShiBros, an exciting addition to the Monkey Sol Inu ecosystem, will bring entertainment, community engagement, and potential rewards. Expect unique gameplay, challenges, and integration with the MSI ecosystem.",
+      phase: "Buy More",
+      description: "Buy more if you like Bellscoin! More Bells, more fun.",
+      image: "/images/phase1.webp",
     },
     {
-      phase: "Phase 4: Centralized Exchanges (CEXs)",
+      phase: "Maybe make interesting things",
       description:
-        "Expand reach and accessibility by securing listings on centralized exchanges. CEXs will provide seamless trading, liquidity, and exposure to a broader global audience.",
+        "Explore opportunities like Op_cat on Bellscoin Layer 1. Who knows what the future holds?",
+      image: "/images/bellscoin3.webp",
     },
-    {
-      phase: "Phase 5: TickerTrending.com Revenue Integration",
-      description:
-        "The integration of TickerTrending.com revenue streams will add a sustainable financial layer to the Monkey Sol Inu ecosystem. A portion of the platform's revenue will be directed to support future developments, community incentives, and overall project growth.",
-    },
-    {
-      phase: "Phase 6: DeFi Social Networking Platform",
-      description:
-        "The evolution of the Monkey Sol Inu ecosystem continues with the introduction of a decentralized social networking platform. Designed to foster meaningful interactions, collaborations, and user-generated content, this platform will empower community members to share insights, discover opportunities, and build trusted connections within the DeFi space. By integrating token utilities, governance features, and value-driven engagement strategies, the DeFi social networking platform will enhance user experience, amplify community involvement, and further solidify the MSI ecosystem’s position as a dynamic, innovation-led environment."
-    }
   ];
 
   return (
-    <section
-      className="roadmap-section py-16 px-4 md:px-8 bg-black text-white relative"
-      id="roadmap"
-    >
-      {/* Background Gradient Animation */}
-      <div className="absolute inset-0 animate-pulse bg-black via-green-700 to-purple-700 opacity-50 blur-2xl"></div>
+    <section className="m-20 rounded-3xl border-white border-4 roadmap-section flex flex-col bg-fixed py-16 px-4 md:px-8 bg-gradient-to-b from-blue-300 to-blue-700 text-white relative">
+      {/* Section Title */}
+      <h2 className="text-center text-4xl md:text-6xl font-bold mb-12 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-pink-500">
+        Roadmap
+      </h2>
 
-      <div className="relative max-w-6xl mx-auto z-10">
-        {/* Section Title */}
-        <h2 className="text-4xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-purple-500">
-          Roadmap
-        </h2>
+      {/* Roadmap Phases */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        {roadmapPhases.map((item, index) => (
+          <div
+            key={index}
+            className="group relative bg-black/50 p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105"
+          >
+            {/* Image */}
+            <div className="relative h-40 w-full overflow-hidden rounded-lg mb-4">
+              <Image
+                src={item.image}
+                alt={`Phase ${index + 1}`}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-lg group-hover:scale-110 transition-transform duration-500"
+              />
+            </div>
 
-        {/* Roadmap Timeline */}
-        <div className="roadmap-container relative">
-          {/* Vertical Timeline Line */}
-          <div className="timeline absolute left-1/2 transform -translate-x-1/2 w-1 bg-green-500 h-full"></div>
+            {/* Phase Content */}
+            <h3 className="text-2xl font-bold mb-2 group-hover:text-yellow-300 transition-colors duration-300">
+              {item.phase}
+            </h3>
+            <p className="text-gray-300 group-hover:text-white transition-colors duration-300">
+              {item.description}
+            </p>
 
-          {/* Roadmap Phases */}
-          <ul className="space-y-12 flex items-center flex-col">
-            {roadmapPhases.map((item, index) => (
-              <li
-                key={index}
-                className="relative flex items-center group transition-all duration-300"
-              >
-                {/* Phase Marker */}
-                <div className="phase-marker w-16 h-16 flex items-center justify-center rounded-full shadow-lg border-2 border-green-500 bg-black/70 backdrop-blur-md transition-transform group-hover:scale-110">
-                  <span className="text-green-400 text-2xl font-bold">
-                    {index + 1}
-                  </span>
-                </div>
-
-                {/* Phase Card */}
-                <div className="phase-card ml-6 p-6 bg-black/60 border border-green-500 rounded-lg shadow-lg backdrop-blur-lg group-hover:scale-105 transition-transform duration-300">
-                  <h3 className="text-2xl font-semibold text-purple-400 mb-2">
-                    {item.phase}
-                  </h3>
-                  <p className="text-gray-300">{item.description}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
+            {/* Glow Effect */}
+            <div className="absolute inset-0 rounded-lg bg-gradient-to-b from-transparent to-yellow-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+          </div>
+        ))}
       </div>
 
-     
+      {/* Floating Decorative Clouds */}
+      <div className="absolute top-10 left-10 animate-float">
+        <span className="text-white text-6xl font-bold">☁️</span>
+      </div>
+      <div className="absolute top-20 right-20 animate-float">
+        <span className="text-white text-5xl font-bold">☁️</span>
+      </div>
+
+      {/* Styling */}
+      <style jsx>{`
+        @keyframes float {
+          0% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+          100% {
+            transform: translateY(0);
+          }
+        }
+
+        .animate-float {
+          animation: float 4s ease-in-out infinite;
+        }
+      `}</style>
     </section>
   );
 };
