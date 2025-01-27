@@ -199,7 +199,7 @@ const HistorySection: React.FC = () => {
           <div className="text-sm text-gray-800 space-y-1 break-words">
             {event.links.map((link, linkIndex) => (
               <div key={linkIndex}>
-                <a href={link} target="_blank" rel="noopener noreferrer" className="underline">
+                <a href={link} target="_blank" rel="noopener noreferrer" className="underline text-black">
                   {link}
                 </a>
               </div>
