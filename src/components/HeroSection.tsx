@@ -25,7 +25,7 @@ const HeroSection: React.FC = () => {
           width={600}
           height={600}
           alt="$BELLS Logo"
-          className="w-120 md:w-120"
+          className="w-60 md:w-80"
         />
       </div>
   
