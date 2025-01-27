@@ -22,10 +22,10 @@ const HeroSection: React.FC = () => {
       <div className="fade-in-delay">
         <Image
           src="/images/logo.png"
-          width={600}
-          height={600}
+          width={400}
+          height={400}
           alt="$BELLS Logo"
-          className="w-60 md:w-80"
+          className="w-50 md:w-70"
         />
       </div>
   
@@ -73,7 +73,7 @@ const HeroSection: React.FC = () => {
   
     {/* Animated Text */}
     <div className="absolute bottom-24 fade-in mx-auto z-10">
-      <h2 className="bg-orange-500 text-white text-3xl md:text-[60px] border-4 border-white font-bold px-6 py-6 rounded-lg shadow-md">
+      <h2 className="bg-orange-500 text-white text-3xl md:text-[46px] border-4 border-white font-bold px-6 py-6 rounded-lg shadow-md">
         The World's Original Memecoin!
       </h2>
     </div>
