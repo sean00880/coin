@@ -32,7 +32,7 @@ const HeroSection: React.FC = () => {
       {/* Contract Address */}
       <div className="relative">
         <div className="bg-white text-black px-4 py-2 rounded-md font-mono font-bold text-xl shadow-md">
-        0x48962A9c70dabdC708109837EfF7c3aDE8f886d4
+        0x91bC599050052fA24A09783931F4ebF7f223cC01
 
         </div>
         <div
@@ -47,8 +47,8 @@ const HeroSection: React.FC = () => {
       {/* Social Icons */}
       <div className="flex justify-center space-x-4 mt-6">
         {[
-          { href: "https://www.dextools.io/app/en/ether/pair-explorer/0x460718dd3ec316bb59810cac49120c4ba21570f7?t=1738186637792", src: "/icons/dextools.png", alt: "DexTools" },
-          { href: "https://dexscreener.com/ethereum/0x460718dd3ec316bb59810cac49120c4ba21570f7", src: "/icons/dexscreener.png", alt: "DexScreener" },
+          { href: "https://www.dextools.io/app/en/ether/pair-explorer/0xe13ead95cfa3e8fe1968900c4248c7cea2614c40?t=1738199611013", src: "/icons/dextools.png", alt: "DexTools" },
+          { href: "https://dexscreener.com/ethereum/0xe13ead95cfa3e8fe1968900c4248c7cea2614c40", src: "/icons/dexscreener.png", alt: "DexScreener" },
         ].map((icon, index) => (
           <a
             key={index}
