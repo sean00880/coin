@@ -63,7 +63,7 @@ const TokenomicsSection: React.FC = () => {
     { title: 'TOKEN NAME', value: 'Bells Coin', details: 'The official name of our token, representing its identity.' },
     { title: 'SYMBOL', value: '$BELLS', details: 'The ticker symbol used for trading Bellscoin.' },
     { title: 'LIQUIDITY', value: 'Burned', details: 'Liquidity is burned to ensure scarcity and stability.' },
-    { title: 'TOTAL SUPPLY', value: '250,000,000', details: 'The maximum total supply of Bellscoin tokens.' },
+    { title: 'TOTAL SUPPLY', value: '100,000,000', details: 'The maximum total supply of Bellscoin tokens.' },
     {
       title: 'NETWORK',
       value: 'Ethereum (ETH)',
