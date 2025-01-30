@@ -45,9 +45,6 @@ export default function TopBar() {
           <Link href="/#about" className="hover:text-yellow-200 transition">
             About
           </Link>
-          <Link href="/#utilities" className="hover:text-yellow-200 transition">
-            Utilities
-          </Link>
           <Link href="/#tokenomics" className="hover:text-yellow-200 transition">
             Tokenomics
           </Link>
@@ -72,12 +69,6 @@ export default function TopBar() {
             className="block py-2 border-b border-orange-500 hover:bg-yellow-400 transition"
           >
             About
-          </Link>
-          <Link
-            href="/#utilities"
-            className="block py-2 border-b border-orange-500 hover:bg-yellow-400 transition"
-          >
-            Utilities
           </Link>
           <Link
             href="/#tokenomics"
