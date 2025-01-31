@@ -25,7 +25,7 @@ const Footer: React.FC = () => {
     </div>
     <div className="w-1/2 flex flex-col items-start justify-center p-8 transition-all duration-500 transform hover:translate-x-[10px]">
       <h2 className="text-4xl font-bold mb-2 text-black">
-        $boin
+        $coin
       </h2>
       <p className="text-lg text-gray-700">
         Revolutionizing spending of coins in a new way.
