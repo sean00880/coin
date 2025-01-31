@@ -1,24 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function TopBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
-    <div className="relative z-50 bg-black h-[13vh] w-full flex justify-center items-center">
+    <div className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-black py-2 rounded-lg shadow-md" : "bg-transparent"}`}>
       {/* Topbar Container */}
-      <div className="topbar w-[95%] border-4 border-white rounded-2xl m-2 flex items-center justify-between px-4 md:px-8 py-4 bg-gradient-to-r from-yellow-300 to-orange-700 shadow-md">
+      <div className=" w-[95%] mx-auto flex items-center justify-between rounded-2xl transition-all duration-300">
         {/* Logo */}
-        <Link href="https://bellscoin.com" className="flex items-center">
+        <Link href="" className="flex items-center">
           <Image
-            src="/images/logo.png"
+            src="/images/coin.png"
             alt="Logo"
             width={90}
             height={40}
@@ -51,7 +62,6 @@ export default function TopBar() {
           <Link href="/#roadmap" className="hover:text-yellow-200 transition">
             Roadmap
           </Link>
-          
         </nav>
       </div>
 
@@ -82,7 +92,6 @@ export default function TopBar() {
           >
             Roadmap
           </Link>
-       
         </div>
       )}
     </div>

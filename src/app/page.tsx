@@ -1,63 +1,35 @@
 "use client";
-// src/app/page.tsx
-import React, { useState } from 'react';
-import LandingLayout from '../components/LandingLayout';
-import Footer from '../components/Footer';
-import AboutSection from '../components/About';
-import HeroSection from '@components/HeroSection';
+import React, { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
+import LandingLayout from '@components/LandingLayout';
+import Footer from '@components/Footer';
 import Tokenomics from '@components/Tokenomics';
 import Roadmap from '@components/Roadmap';
-import HistorySection from '@components/History';
+import AboutSection from '@components/About';
 
-const posts = [
-  {
-    title: 'How MSI Integrates DeFi and Social Networking',
-    href: '/blog/defi-social-networking',
-    description: 'Understand the unique approach that blends DeFi and social interactions...',
-    previewImage: '/images/ML7.png',
-  },
-  {
-    title: "GameFi's Role in the MSI Ecosystem",
-    href: '/blog/gamefi-role',
-    description: 'Explore how GameFi enhances user engagement and contributes to our growth...',
-    previewImage: '/images/gamefinew.webp',
-  },
-  // Add more blog posts with preview images here
-];
+const HeroSection = dynamic(() => import('@components/HeroSection'), {
+  ssr: false,
+  loading: () => <div className="h-screen " />
+});
 
 const HomePage: React.FC = () => {
-  
+  const [isMounted, setIsMounted] = useState(false);
 
-  const [activeTab, setActiveTab] = useState('blog'); // This is for the Blog/Documentation section
-  const images = [
-    '/images/ML4.png',
-    '/images/ML5.png',
-    '/images/gamefinew.webp',
-    '/images/ML8.png',
-    '/images/ML7.png',
-  ];
-
-
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   return (
     <LandingLayout>
-      {/* Hero Section */}
-
-      <HeroSection/>
-
-       {/* Whitepaper Section */}
-       <HistorySection/> 
-  
-{/* Tokenomics Section */}
-<Tokenomics/>
-
-      {/* Roadmap Section */}
-     <Roadmap/>
-
-      {/* Call-to-Action */}
-    
-  <Footer/>
-  
+      {isMounted && (
+        <>
+          <HeroSection />
+          <AboutSection />
+          <Tokenomics />
+          <Roadmap />
+          <Footer />
+        </>
+      )}
     </LandingLayout>
   );
 };

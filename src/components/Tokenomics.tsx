@@ -5,7 +5,7 @@ import Image from 'next/image';
 const TokenomicsSection: React.FC = () => {
   const [openCardIndex, setOpenCardIndex] = useState<number | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  const carRef = useRef<HTMLDivElement>(null);
+  const coinRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Intersection Observer for fade-in animations
@@ -27,27 +27,33 @@ const TokenomicsSection: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    // Scroll listener for sliding car effect relative to section
+    // Scroll listener for coin animation relative to section
     const handleScroll = () => {
       const sectionElement = sectionRef.current;
-      const carElement = carRef.current;
+      const coinElement = coinRef.current;
 
-      if (sectionElement && carElement) {
+      if (sectionElement && coinElement) {
         const sectionRect = sectionElement.getBoundingClientRect();
         const windowHeight = window.innerHeight;
 
+        // Calculate progress based on section visibility
         const progress = Math.max(
           0,
           Math.min(1, (windowHeight - sectionRect.top) / sectionRect.height)
         );
 
-        const adjustedProgress = progress * 0.5; // Reduce movement speed
-        const sectionWidth = sectionElement.offsetWidth;
-        const maxTranslateX = sectionWidth - carElement.offsetWidth;
+        // Vertical translation from top to bottom of section
+        const translateY = progress * sectionRect.height;
 
-        const translateX = adjustedProgress * maxTranslateX;
+        // Rotation and flip animation
+        const rotation = progress * 720; // Two full rotations
+        const flip = progress * 180; // Full flip
 
-        carElement.style.transform = `translateX(${translateX}px)`;
+        coinElement.style.transform = `
+          translateY(${translateY}px)
+          rotate(${rotation}deg)
+          rotateY(${flip}deg)
+        `;
       }
     };
 
@@ -60,14 +66,14 @@ const TokenomicsSection: React.FC = () => {
   };
 
   const tokenomicsData = [
-    { title: 'TOKEN NAME', value: 'Bells Coin', details: 'The official name of our token, representing its identity.' },
-    { title: 'SYMBOL', value: '$BELLS', details: 'The ticker symbol used for trading Bellscoin.' },
-    { title: 'LIQUIDITY', value: 'Burned', details: 'Liquidity is burned to ensure scarcity and stability.' },
-    { title: 'TOTAL SUPPLY', value: '100,000,000', details: 'The maximum total supply of Bellscoin tokens.' },
+  { title: 'TOKEN NAME', value: 'COIN', details: 'The official name of our token, representing its identity.' },
+    { title: 'SYMBOL', value: '$COIN', details: 'The ticker symbol used for trading COIN.' },
+    { title: 'LIQUIDITY', value: 'Burned', details: 'Liquidity is burned to ensure scarcity and stability for $COIN holders.' },
+    { title: 'TOTAL SUPPLY', value: '100,000,000', details: 'The maximum total supply of COIN tokens to ensure scarcity.' },
     {
       title: 'NETWORK',
       value: 'Ethereum (ETH)',
-      details: 'The Bellscoin ecosystem is built on the Ethereum blockchain, leveraging its robust infrastructure.',
+      details: 'COIN operates on the Ethereum blockchain, known for its security and reliability.',
     },
   ];
 
@@ -75,7 +81,7 @@ const TokenomicsSection: React.FC = () => {
     <section
       id="tokenomics"
       className="relative bg-fixed py-20 text-black"
-      style={{ backgroundImage: "url('/images/bgimg.jpg')", backgroundSize: 'cover' }}
+      style={{ backgroundImage: "url('/images/coin2.gif')", backgroundSize: 'cover' }}
       ref={sectionRef}
     >
       <div className="absolute inset-0 bg-gradient-to-r from-yellow-600 to-black opacity-70"></div>
@@ -84,18 +90,17 @@ const TokenomicsSection: React.FC = () => {
           Tokenomics
         </h1>
 
-        {/* Sliding Car */}
+        {/* Animated Coin */}
         <div
-          className="car-image relative w-96 h-auto fade-in-scroll opacity-0 overflow-hidden"
-          ref={carRef}
-          style={{ transition: 'transform 0.2s ease-out' }}
+          className="coin-container relative w-96 h-auto fade-in-scroll opacity-0 overflow-hidden"
+          ref={coinRef}
         >
           <Image
-            src="/images/bellscoin2.png"
-            alt="Sliding Car"
-            width={400}
-            height={300}
-            className="rounded-lg shadow-lg"
+            src="/images/coin.png"
+            alt="Animated Coin"
+            width={100}
+            height={100}
+            className="rounded-full shadow-lg coin-image"
           />
         </div>
 
@@ -105,14 +110,14 @@ const TokenomicsSection: React.FC = () => {
             <div
               key={index}
               className={`bg-white p-6 rounded-xl shadow-lg border-2 ${
-                openCardIndex === index ? 'border-purple-600 scale-105' : 'border-blue-400'
-              } hover:scale-105 hover:border-blue-600 transition-all duration-300`}
+                openCardIndex === index ? 'border-orange-400 scale-105' : 'border-yellow-400'
+              } hover:scale-105 hover:border-yellow-600 transition-all duration-300`}
             >
               <h2 className="text-2xl md:text-3xl font-bold mb-3 text-gray-900">{item.title}</h2>
               <p className="text-xl md:text-2xl text-gray-800">{item.value}</p>
               <button
                 onClick={() => toggleCard(index)}
-                className="mt-5 bg-gradient-to-br from-blue-600 to-purple-600 hover:from-purple-600 hover:to-blue-600 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300"
+                className="mt-5 bg-gradient-to-br from-yellow-600 to-yellow-600 hover:from-orange-600 hover:to-orange-600 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300"
               >
                 {openCardIndex === index ? 'Close' : 'Details'}
               </button>
@@ -142,6 +147,12 @@ const TokenomicsSection: React.FC = () => {
 
         .car-image {
           transition: transform 0.5s ease-out;
+        }
+
+        .coin-image {
+          transform-style: preserve-3d;
+          transition: transform 0.1s ease-out;
+          will-change: transform;
         }
       `}</style>
     </section>
