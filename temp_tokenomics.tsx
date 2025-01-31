@@ -14,11 +14,11 @@ const TokenomicsSection: React.FC = () => {
                     <div className="grid grid-cols-3 gap-4 p-4">
                         <div className="bg-white p-6 rounded-lg shadow-lg border-2 border-black">
                             <h2 className="text-3xl font-bold mb-2">TOKEN NAME</h2>
-                            <p className="text-2xl">Bellscoin</p>
+                            <p className="text-2xl">boin</p>
                         </div>
                         <div className="bg-white p-6 rounded-lg shadow-lg border-2 border-black">
                             <h2 className="text-3xl font-bold mb-2">SYMBOL</h2>
-                            <p className="text-2xl">$BELLS</p>
+                            <p className="text-2xl">$COIN</p>
                         </div>
                         <div className="bg-white p-6 rounded-lg shadow-lg border-2 border-black">
                             <h2 className="text-3xl font-bold mb-2">LIQUIDITY</h2>
