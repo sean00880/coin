@@ -170,12 +170,7 @@ const HeroSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Bottom Tagline */}
-      <div className="absolute bottom-20 mx-auto z-10">
-        <h2 className="bg-black/80 text-white text-2xl md:text-4xl font-bold px-8 py-4 rounded-full shadow-lg">
-          The Future of Memecoins is Here!
-        </h2>
-      </div>
+
 
       {/* Animations */}
       <style jsx>{`
